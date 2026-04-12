@@ -1,14 +1,14 @@
 import json
-from app import app
 from models import db, Book
 
-with app.app_context():
-    db.create_all()
+def seed_data(app):
+    with app.app_context():
+        db.create_all()
 
-    # check if already data exists
-    if Book.query.count() > 0:
-        print("⚠️ Data already exists, skipping seeding...")
-    else:
+        if Book.query.count() > 0:
+            print("Already seeded")
+            return
+
         with open('books.json', 'r', encoding='utf-8') as f:
             books = json.load(f)
 
@@ -26,4 +26,4 @@ with app.app_context():
             db.session.add(new_book)
 
         db.session.commit()
-        print(f"✅ {len(books)} books inserted successfully!")
+        print("Seed complete")

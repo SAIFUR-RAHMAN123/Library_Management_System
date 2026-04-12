@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import FilterSidebar from "../components/FilterSidebar";
 import StatsBar from "../components/StatsBar";
+import API_URL from "../config";
 
 function UserDashboard() {
   const [books, setBooks] = useState([]);
@@ -19,16 +20,16 @@ function UserDashboard() {
   }, []);
 
   const fetchBooks = () => {
-    fetch("/books").then(r => r.json()).then(setBooks);
+    fetch(`${API_URL}/books`).then(r => r.json()).then(setBooks);
   };
 
   const fetchStats = () => {
-    fetch("/stats").then(r => r.json()).then(setStats);
+    fetch(`${API_URL}/stats`).then(r => r.json()).then(setStats);
   };
 
   const checkLibraryId = async () => {
     if (!libraryId) return;
-    const res = await fetch(`/borrowers/search?library_id=${libraryId}`);
+    const res = await fetch(`${API_URL}/borrowers/search?library_id=${libraryId}`);
     if (res.ok) {
       const data = await res.json();
       setBorrowerInfo(data);
@@ -41,7 +42,7 @@ function UserDashboard() {
 
   const handleBorrow = async () => {
     if (!borrowerInfo || !returnDate) return;
-    const res = await fetch("/borrow", {
+    const res = await fetch(`${API_URL}/borrow`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({

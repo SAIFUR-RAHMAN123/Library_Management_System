@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import FilterSidebar from "../components/FilterSidebar";
 import StatsBar from "../components/StatsBar";
+import API_URL from "../config";
 
 function AdminDashboard({ setIsAdmin }) {
   const [books, setBooks] = useState([]);
@@ -22,19 +23,19 @@ function AdminDashboard({ setIsAdmin }) {
     fetchStats();
   }, []);
 
-  const fetchBooks = () => fetch("/books").then(r => r.json()).then(setBooks);
-  const fetchStats = () => fetch("/stats").then(r => r.json()).then(setStats);
-  const fetchBorrows = () => fetch("/borrows").then(r => r.json()).then(setBorrows);
-  const fetchBorrowers = () => fetch("/borrowers").then(r => r.json()).then(setBorrowers);
+  const fetchBooks = () => fetch(`${API_URL}/books`).then(r => r.json()).then(setBooks);
+  const fetchStats = () => fetch(`${API_URL}/stats`).then(r => r.json()).then(setStats);
+  const fetchBorrows = () => fetch(`${API_URL}/borrows`).then(r => r.json()).then(setBorrows);
+  const fetchBorrowers = () => fetch(`${API_URL}/borrowers`).then(r => r.json()).then(setBorrowers);
 
   const deleteBook = async (id) => {
-    await fetch(`/books/${id}`, { method: "DELETE" });
+    await fetch(`${API_URL}/books/${id}`, { method: "DELETE" });
     fetchBooks(); fetchStats();
   };
 
   const addBook = async () => {
     if (!newBook.title || !newBook.author) return;
-    await fetch("/books", {
+    await fetch(`${API_URL}/books`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(newBook)
@@ -46,7 +47,7 @@ function AdminDashboard({ setIsAdmin }) {
 
   const addBorrower = async () => {
     if (!newBorrower.library_id || !newBorrower.name) return;
-    const res = await fetch("/borrowers", {
+    const res = await fetch(`${API_URL}/borrowers`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(newBorrower)
@@ -61,32 +62,29 @@ function AdminDashboard({ setIsAdmin }) {
     }
   };
 
-const returnBook = async (borrowId) => {
-  await fetch(`/borrow/return/${borrowId}`, { method: "PUT" });
-
-  setBorrows(prev =>
-    prev.map(b => b.id === borrowId ? { ...b, returned: true } : b)
-  );
-
-  if (selectedBorrower) {
-    setSelectedBorrower(prev => ({
-      ...prev,
-      active_borrows: prev.active_borrows.filter(b => b.id !== borrowId),
-      borrow_history: prev.borrow_history.map(b =>
-        b.id === borrowId ? { ...b, returned: true } : b
-      )
-    }));
-  }
-
-  fetchBooks();
-  fetchStats();
-};
+  const returnBook = async (borrowId) => {
+    await fetch(`${API_URL}/borrow/return/${borrowId}`, { method: "PUT" });
+    setBorrows(prev =>
+      prev.map(b => b.id === borrowId ? { ...b, returned: true } : b)
+    );
+    if (selectedBorrower) {
+      setSelectedBorrower(prev => ({
+        ...prev,
+        active_borrows: prev.active_borrows.filter(b => b.id !== borrowId),
+        borrow_history: prev.borrow_history.map(b =>
+          b.id === borrowId ? { ...b, returned: true } : b
+        )
+      }));
+    }
+    fetchBooks();
+    fetchStats();
+  };
 
   const logout = () => {
-  localStorage.removeItem("isAdmin");
-  setIsAdmin(false);
-  window.location.href = "/";
-};
+    localStorage.removeItem("isAdmin");
+    setIsAdmin(false);
+    window.location.href = "/";
+  };
 
   const filteredBooks = books.filter(book =>
     book.title.toLowerCase().includes(filters.search.toLowerCase()) &&

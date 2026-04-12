@@ -12,6 +12,10 @@ CORS(app)
 with app.app_context():
     db.create_all()
 
+    from models import Book
+    if Book.query.count() == 0:
+        import seed
+
 # ─── BOOKS ───────────────────────────────────────
 
 @app.route('/books', methods=['GET'])

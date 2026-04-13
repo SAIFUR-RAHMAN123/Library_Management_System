@@ -7,10 +7,11 @@ from datetime import datetime
 app = Flask(__name__)
 app.config.from_object(Config)
 db.init_app(app)
-CORS(app)
+CORS(app, resources={r"/*": {"origins": "*"}})
 
 with app.app_context():
     db.create_all()
+
 
 from seed import seed_data
 seed_data(app)

@@ -1,88 +1,88 @@
 # 📚 Library Management System
 
 ## 🚀 Live Demo
-
-https://library-management-system-six-lemon-91.vercel.app/
+🌐 **Frontend:** https://library-management-system-six-lemon-91.vercel.app/  
+⚙️ **Backend API:** https://librarymanagementsystem-production-0b93.up.railway.app/
 
 ---
 
 ## 📌 Overview
-
-This is a full-stack **Library Management System** that allows users to manage books, borrowers, and borrowing activities.
-It provides real-time data updates and a clean user interface for efficient library operations.
+A full-stack Library Management System with separate **User** and **Admin** panels.
+Users can browse and borrow books, while admins manage the entire library including borrowers, borrow records, and book inventory.
 
 ---
 
 ## ✨ Features
+- 📖 Browse 100+ books with filters (Author, Language, Year)
+- ➕ Add / Delete books (Admin only)
+- 👤 Register borrowers with Library ID, Email, Mobile, Govt ID
+- 🔄 Borrow and return books with due date tracking
+- 🔴 Overdue alerts for late returns
+- 📊 Live stats — Total, Available, Borrowed, Overdue
+- 🔐 Admin panel with username & password protection
+- 🌍 Wikipedia link for every book
 
-* 📖 View all books
-* ➕ Add new books
-* ✏️ Update book details
-* ❌ Delete books
-* 👤 Manage borrowers
-* 🔄 Borrow and return books
-* 📊 View library statistics (available, borrowed, overdue)
+---
+
+## 🔐 Admin Login
+| Field | Value |
+|-------|-------|
+| Username | `admin` |
+| Password | `admin123` |
+
+> Admin Panel: https://library-management-system-six-lemon-91.vercel.app/admin/login
 
 ---
 
 ## 🛠️ Tech Stack
-
-### Frontend
-
-* React.js
-* Bootstrap / CSS
-
-### Backend
-
-* Python (Flask)
-* Flask REST API
-
-### Database
-
-* SQLite (SQLAlchemy ORM)
-
-### Deployment
-
-* Frontend: Vercel
-* Backend: Railway
+| Layer | Technology |
+|-------|-----------|
+| Frontend | React.js, React Router |
+| Backend | Python, Flask, REST API |
+| Database | SQLite + SQLAlchemy ORM |
+| Frontend Deploy | Vercel |
+| Backend Deploy | Railway |
 
 ---
 
 ## 🔗 API Endpoints
-
-* `/books` → Get all books
-* `/borrowers` → Get all borrowers
-* `/borrow` → Borrow a book
-* `/borrows` → Get borrow records
-* `/stats` → Get statistics
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| GET | `/books` | Get all books |
+| POST | `/books` | Add new book |
+| DELETE | `/books/<id>` | Delete book |
+| GET | `/stats` | Library statistics |
+| GET | `/borrowers` | All borrowers |
+| POST | `/borrowers` | Register borrower |
+| POST | `/borrow` | Borrow a book |
+| PUT | `/borrow/return/<id>` | Return a book |
 
 ---
 
-## ⚙️ Installation (Local Setup)
+## ⚙️ Local Setup
 
 ### Backend
-
 ```bash
+cd bookmanager
 pip install -r requirements.txt
+python seed.py
 python app.py
 ```
 
 ### Frontend
-
 ```bash
+cd bookmanager/frontend
 npm install
 npm start
 ```
 
 ---
 
-
 ## 👨‍💻 Author
-
-Saifur Rahman
+**Saifur Rahman**  
+B.Sc. Computer Science & Data Analytics  
 
 ---
 
-## ⭐ If you like this project
-
-Give it a star on GitHub ⭐
+## ⭐ Support
+If you like this project, give it a star on GitHub ⭐

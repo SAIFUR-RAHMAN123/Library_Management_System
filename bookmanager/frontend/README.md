@@ -1,70 +1,88 @@
-# Getting Started with Create React App
+# 📚 Library Management System
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## 🚀 Live Demo
+🌐 **Frontend:** https://library-management-system-six-lemon-91.vercel.app/  
+⚙️ **Backend API:** https://librarymanagementsystem-production-0b93.up.railway.app/
 
-## Available Scripts
+---
 
-In the project directory, you can run:
+## 📌 Overview
+A full-stack Library Management System with separate **User** and **Admin** panels.
+Users can browse and borrow books, while admins manage the entire library including borrowers, borrow records, and book inventory.
 
-### `npm start`
+---
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## ✨ Features
+- 📖 Browse 100+ books with filters (Author, Language, Year)
+- ➕ Add / Delete books (Admin only)
+- 👤 Register borrowers with Library ID, Email, Mobile, Govt ID
+- 🔄 Borrow and return books with due date tracking
+- 🔴 Overdue alerts for late returns
+- 📊 Live stats — Total, Available, Borrowed, Overdue
+- 🔐 Admin panel with username & password protection
+- 🌍 Wikipedia link for every book
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+---
 
-### `npm test`
+## 🔐 Admin Login
+| Field | Value |
+|-------|-------|
+| Username | `admin` |
+| Password | `admin123` |
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+> Admin Panel: https://library-management-system-six-lemon-91.vercel.app/admin/login
 
-### `npm run build`
+---
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## 🛠️ Tech Stack
+| Layer | Technology |
+|-------|-----------|
+| Frontend | React.js, React Router |
+| Backend | Python, Flask, REST API |
+| Database | SQLite + SQLAlchemy ORM |
+| Frontend Deploy | Vercel |
+| Backend Deploy | Railway |
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+---
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## 🔗 API Endpoints
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| GET | `/books` | Get all books |
+| POST | `/books` | Add new book |
+| DELETE | `/books/<id>` | Delete book |
+| GET | `/stats` | Library statistics |
+| GET | `/borrowers` | All borrowers |
+| POST | `/borrowers` | Register borrower |
+| POST | `/borrow` | Borrow a book |
+| PUT | `/borrow/return/<id>` | Return a book |
 
-### `npm run eject`
+---
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## ⚙️ Local Setup
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Backend
+```bash
+cd bookmanager
+pip install -r requirements.txt
+python seed.py
+python app.py
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+### Frontend
+```bash
+cd bookmanager/frontend
+npm install
+npm start
+```
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+---
 
-## Learn More
+## 👨‍💻 Author
+**Saifur Rahman**  
+B.Sc. Computer Science & Data Analytics  
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+---
 
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## ⭐ Support
+If you like this project, give it a star on GitHub ⭐

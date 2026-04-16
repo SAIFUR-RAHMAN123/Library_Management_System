@@ -12,10 +12,9 @@ CORS(app, resources={r"/*": {"origins": "*"}})
 with app.app_context():
     db.create_all()
 
-
-from seed import seed_data
-seed_data(app)
-
+    from seed import seed_data
+    if Book.query.count() == 0:
+        seed_data(app)
 # ─── BOOKS ───────────────────────────────────────
 
 @app.route('/books', methods=['GET'])
